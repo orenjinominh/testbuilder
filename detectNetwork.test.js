@@ -168,7 +168,7 @@ describe('Discover', function() {
         var cardDigits = String(prefix) + '0123456789012';
         detectNetwork(cardDigits).should.equal('Discover');
       })
-      it('has a prefix of ' + prefix + ' and a length of 16', function() {
+      it('has a prefix of ' + prefix + ' and a length of 19', function() {
         var cardDigits = String(prefix) + '1234567890123456';
        detectNetwork(cardDigits).should.equal('Discover');
       })
