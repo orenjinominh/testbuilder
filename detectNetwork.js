@@ -39,9 +39,13 @@ var detectNetwork = function(cardNumber) {
     if (cardNumberDigits.length === 13 || cardNumberDigits.length === 16 || cardNumberDigits.length === 19) {
     	network = 'Visa';
     }
-  } else if ((cardNumberDigits[0] === '5') && (cardNumberDigits[1] === '1' || cardNumberDigits[1] === '2' || cardNumberDigits[1] === '3') || cardNumberDigits[1] === '4' || cardNumberDigits[1] === '5') {
+  } else if ((cardNumberDigits[0] === '5') && (cardNumberDigits[1] === '1' || cardNumberDigits[1] === '2' || cardNumberDigits[1] === '3' || cardNumberDigits[1] === '4' || cardNumberDigits[1] === '5')) {
     if (cardNumberDigits.length === 16) {
     	network = 'MasterCard';
+    }
+  } else if (cardNumber.substring(0, 4) === '6011' || cardNumber.substring(0, 2) === '65' || (Number(cardNumber.substring(0,3)) >= 644 && Number(cardNumber.substring(0,3)) <= 649)) {
+    if (cardNumberDigits.length === 16 || cardNumberDigits.length === 19) {
+      network = 'Discover';
     }
   }
 
