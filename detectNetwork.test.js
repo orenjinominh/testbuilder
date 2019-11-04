@@ -355,3 +355,31 @@ describe('China UnionPay', function() {
 });
 
 
+describe('Switch', function() {
+  var should = chai.should();
+  
+  cardNumberLength = [16,18,19];
+  switchPrefixes = [4903, 4905, 4911, 4936, 564182, 633110, 6333, 6759];
+  
+  for (var whichPrefix = 0; whichPrefix < switchPrefixes.length; whichPrefix++) {
+
+    for (var lengthIndex = 0; lengthIndex < cardNumberLength.length; lengthIndex++) {
+
+      var testCardNum = switchPrefixes[whichPrefix];
+
+      for (var suffixLength = 0; suffixLength < (cardNumberLength[lengthIndex] - String(switchPrefixes[whichPrefix]).length); suffixLength++) {
+      testCardNum  = testCardNum  + '1';
+      }
+
+      (function(switchPrefixes, whichPrefix, cardNumberLength, lengthIndex, testCardNum ) {
+        it('has a prefix of ' + switchPrefixes[whichPrefix] + ' and a length of ' + cardNumberLength[lengthIndex], function() {
+          detectNetwork(testCardNum).should.equal('Switch');
+        });
+      })(switchPrefixes, whichPrefix, cardNumberLength, lengthIndex, testCardNum);
+    }
+  }  
+});
+
+
+
+
