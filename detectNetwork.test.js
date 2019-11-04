@@ -52,7 +52,7 @@ describe('Diner\'s Club', function() {
   it('has a prefix of 39 and a length of 14', function() {
     detectNetwork('39345678901234').should.equal('Diner\'s Club');
   });
-  
+
 });
 
 describe('American Express', function() {
@@ -283,4 +283,75 @@ describe('Maestro', function() {
     detectNetwork('6304123456789012345').should.equal('Maestro');
   }); 
 });
+
+
+describe('China UnionPay', function() {
+  var should = chai.should(); 
+
+  //prefix of 622126 to 622925
+  for (var prefix = 622126; prefix <= 622925; prefix++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 16', function() {
+        var cardDigits = String(prefix) + '1234567890';
+        detectNetwork(cardDigits).should.equal('China UnionPay');
+      })
+      it('has a prefix of ' + prefix + ' and a length of 17', function() {
+        var cardDigits = String(prefix) + '12345678901';
+        detectNetwork(cardDigits).should.equal('China UnionPay');
+      })
+      it('has a prefix of ' + prefix + ' and a length of 18', function() {
+        var cardDigits = String(prefix) + '123456789012';
+        detectNetwork(cardDigits).should.equal('China UnionPay');
+      })
+      it('has a prefix of ' + prefix + ' and a length of 19', function() {
+        var cardDigits = String(prefix) + '1234567890123';
+       detectNetwork(cardDigits).should.equal('China UnionPay');
+      })
+    })(prefix);
+  }
+  //prefix of 624 to 626
+  for (var prefix = 624; prefix <= 626; prefix++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 16', function() {
+        var cardDigits = String(prefix) + '1234567890123';
+        detectNetwork(cardDigits).should.equal('China UnionPay');
+      })
+      it('has a prefix of ' + prefix + ' and a length of 17', function() {
+        var cardDigits = String(prefix) + '12345678901234';
+        detectNetwork(cardDigits).should.equal('China UnionPay');
+      })
+      it('has a prefix of ' + prefix + ' and a length of 18', function() {
+        var cardDigits = String(prefix) + '123456789012345';
+        detectNetwork(cardDigits).should.equal('China UnionPay');
+      })
+      it('has a prefix of ' + prefix + ' and a length of 19', function() {
+        var cardDigits = String(prefix) + '1234567890123456';
+       detectNetwork(cardDigits).should.equal('China UnionPay');
+      })
+    })(prefix);
+  }
+
+  //prefix of 6282 to 6288
+  for (var prefix = 6282; prefix <= 6288; prefix++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 16', function() {
+        var cardDigits = String(prefix) + '123456789012';
+        detectNetwork(cardDigits).should.equal('China UnionPay');
+      })
+      it('has a prefix of ' + prefix + ' and a length of 17', function() {
+        var cardDigits = String(prefix) + '1234567890123';
+        detectNetwork(cardDigits).should.equal('China UnionPay');
+      })
+      it('has a prefix of ' + prefix + ' and a length of 18', function() {
+        var cardDigits = String(prefix) + '12345678901234';
+        detectNetwork(cardDigits).should.equal('China UnionPay');
+      })
+      it('has a prefix of ' + prefix + ' and a length of 19', function() {
+        var cardDigits = String(prefix) + '123456789012345';
+       detectNetwork(cardDigits).should.equal('China UnionPay');
+      })
+    })(prefix);
+  }
+});
+
 
