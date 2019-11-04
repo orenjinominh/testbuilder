@@ -56,6 +56,17 @@ var detectNetwork = function(cardNumber) {
       network = "China UnionPay";
     }
   }
+  // exclusionary case to prevent overlap with Visa card number
+  // looks at prefix's length AND length of cardNumber
+  var prefixes = ['4903', '4905', '4911', '4936', '564182', '633110', '6333', '6759'];
+
+  for (var i = 0; i < prefixes.length; i++) {
+    if (prefixes[i] === cardNumber.substring(0, prefixes[i].length)) {
+      if (cardNumberDigits.length === 16 || cardNumberDigits.length === 18 || cardNumberDigits.length === 19) {
+        network = 'Switch';
+      }
+    }
+  }
 
   return network; 
 };
