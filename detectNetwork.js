@@ -47,8 +47,12 @@ var detectNetwork = function(cardNumber) {
     if (cardNumberDigits.length === 16 || cardNumberDigits.length === 19) {
       network = 'Discover';
     }
+  } else if (cardNumber.substring(0, 4) === '5018' || cardNumber.substring(0, 4) === '5020' || cardNumber.substring(0, 4) === '5038' || cardNumber.substring(0, 4) === '6304') {
+    if (cardNumberDigits.length >= 12 && cardNumberDigits.length <= 19) {
+      network = "Maestro";
+    }
   }
-
+  
   return network; 
 };
 
