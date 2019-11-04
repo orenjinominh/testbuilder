@@ -51,8 +51,12 @@ var detectNetwork = function(cardNumber) {
     if (cardNumberDigits.length >= 12 && cardNumberDigits.length <= 19) {
       network = "Maestro";
     }
+  } else if (Number(cardNumber.substring(0, 6)) >= 622126 && Number(cardNumber.substring(0,6)) <= 622925 || (Number(cardNumber.substr(0,3)) >= 624 && Number(cardNumber.substr(0,3)) <= 626) || (Number(cardNumber.substr(0,4)) >= 6282 && Number(cardNumber.substr(0,4)) <= 6288)) {
+    if (cardNumberDigits.length >= 16 || cardNumberDigits.length <= 19) {
+      network = "China UnionPay";
+    }
   }
-  
+
   return network; 
 };
 
